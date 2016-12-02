@@ -16,11 +16,7 @@ export class PostcodeService {
   // Return postcode object from postcode string
   lookupByPostcode(param: string): Observable<Postcode> {
     return this._http.get(this._postcodeApiUrl + param)
-      .map(
-      res => {
-        res.json();        
-      }
-      )
+      .map((response: Response) => <Postcode>response.json())
       .catch(this.handleError);
   }
 

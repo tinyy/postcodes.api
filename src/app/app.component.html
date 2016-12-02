@@ -1,3 +1,9 @@
-<input type="text" [(ngModel)]="postcodeSearch" id="postcode"/>
+<input type="text" [(ngModel)]="search" id="postcode"/>
 
-<button type="button" (click)='validatePostcode()'>Go</button>
+<button type="button" (click)='lookupPostcode()'>Go</button>
+
+<div *ngIf='fillAddress'>
+
+<input type="text" [(ngModel)]="postcode.">
+
+</div>

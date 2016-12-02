@@ -12,38 +12,28 @@ import { PostcodeValid } from './models/postcode-valid';
   providers: [PostcodeService]
 })
 export class AppComponent {
-  postcodeSearch: string;
   postcode: Postcode;
-  postcodeValid: PostcodeValid;
+  search: string;
   errorMessage: string;
+  fillAddress: boolean;
 
   constructor(private _postcodeService: PostcodeService) { }
 
-  validatePostcode() {
-  //  this._postcodeService
-  //           .isPostcodeValid(this.postcodeSearch)
-  //           .subscribe((data:PostcodeValid) => this.postcodeValid = data,
-  //               error => console.log(error));
-  //               // () => console.log(this.postcodeValid));
-  }
-
   lookupPostcode() {
+    this._postcodeService.lookupByPostcode(this.search)
+      // (data: Postcode) => this.postcode = data,
+      .subscribe(
+        res => {
+          this.postcode = res;
+        if (this.postcode){
+this.fillAddress = true;
+        }
 
-    // // if (this.postcodeSearch.length <= 0) { return; }
 
-    // // console.log(this.validatePostcode());
+        },
+      error => this.errorMessage = <any>error);
 
-    // this._postcodeService.lookupByPostcode(this.postcodeSearch)
-    //   .subscribe(
-    //   post => {
-    //     this.postcode = post;
-    //   },
-    //   error => {
-    //     this.errorMessage = <any>error;
-    //   }
-    //   );
-
-    //   console.log(this.postcode);
+      // check if address to be filled in.
   }
 
 }
